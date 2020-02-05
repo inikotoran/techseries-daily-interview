@@ -1,8 +1,22 @@
 KAPREKAR_CONSTANT = 6174
 
+
+def iterate(n, c):
+    if (n == KAPREKAR_CONSTANT):
+        return c
+    if (len(str(n)) == 3):
+        n = int(str(n) + '0')
+    sep = ''
+    asc = int(sep.join(sorted(str(n))))
+    desc = int(sep.join(sorted(str(n), reverse=True)))
+    s = desc - asc
+    return iterate(s, c+1)
+
+
 def num_kaprekar_iterations(n):
   # Fill this in.
-  return 0
+    return iterate(n, 0)
+
 
 print(num_kaprekar_iterations(123))
 # 3
