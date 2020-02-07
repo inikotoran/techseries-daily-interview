@@ -36,8 +36,6 @@ def create_height_balanced_bst(nums):
     left = nums[0:center-1]
     right = nums[center:len(nums)]
 
-    print(left, center, right)
-
     bst = Node(center)
     bst.left = create_height_balanced_bst(left)
     bst.right = create_height_balanced_bst(right)
