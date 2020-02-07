@@ -5,9 +5,41 @@ class Node(object):
     self.right = right
 
 class Solution(object):
+  def node_depth(self, tree, val, depth):
+    if (tree == None):
+      return 0
+    if (tree.value == val):
+      return depth
+    depth += 1
+    return self.node_depth(tree.left, val, depth) + self.node_depth(tree.right, val, depth)
+  
+  def find_all_cousins(self, tree, depth, val, current_depth):
+    if (current_depth == depth and tree.value != val):
+      return [tree.value]
+    
+    result = []
+    lefty = None
+    righty = None
+
+    if (tree != None and tree.left != None):
+      lefty = self.find_all_cousins(tree.left, depth, val, current_depth+1)
+    if (tree != None and tree.right != None):
+      righty = self.find_all_cousins(tree.right, depth, val, current_depth+1)
+    
+    if (lefty != None): 
+      result.extend(lefty)
+    if (righty != None): 
+      result.extend(righty)
+
+    return result
+
   def list_cousins(self, tree, val):
     # Fill this in.
-    return [0]
+    # find the node. how?
+    # find the cousin = same depth
+    # find the depth of node
+    depth = self.node_depth(tree, val, 0)
+    return self.find_all_cousins(tree, depth, val, 0)
 
 #     1
 #    / \
