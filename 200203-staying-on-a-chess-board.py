@@ -22,7 +22,7 @@ def is_knight_on_board(x, y, k, cache={}):
       return 0
     if k == 0:
       return 1
-    return (0
+    return (0.0
       + is_knight_on_board(x+2, y+1, k-1)
       + is_knight_on_board(x+2, y-1, k-1)
       + is_knight_on_board(x-2, y+1, k-1)
